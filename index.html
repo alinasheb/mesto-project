@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/Vector.svg" alt="Логотип">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__job">Исследователь океана</p>
+          <button class="profile__edit" type="button">Редактировать</button>
+        </div>
+        <button class="profile__add" type="button">Добавить</button>
+      </section>
+      <section class="photo-elements">
+        <ul class="photo">
+          <li class="photo__card">
+            <img class="photo__image" src="./images/karachaevo-cherk.jpg" alt="Карачаевск">
+            <div class="photo__description">
+              <h2 class="photo__title">Карачаевск</h2>
+              <button class="photo__like" type="button">Нравится</button>
+            </div>
+          </li>
+            <li class="photo__card">
+              <img class="photo__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+              <div class="photo__description">
+                <h2 class="photo__title">Гора Эльбрус</h2>
+                <button class="photo__like" type="button">Нравится</button>
+              </div>
+            </li>
+            <li class="photo__card">
+              <img class="photo__image" src="./images/Dombai.jpg" alt="Домбай">
+              <div class="photo__description">
+                <h2 class="photo__title">Домбай</h2>
+                <button class="photo__like" type="button">Нравится</button>
+              </div>
+            </li>
+            <li class="photo__card">
+              <img class="photo__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+              <div class="photo__description">
+                <h2 class="photo__title">Гора Эльбрус</h2>
+                <button class="photo__like" type="button">Нравится</button>
+              </div>
+            </li>
+            <li class="photo__card">
+              <img class="photo__image" src="./images/Dombai.jpg" alt="Домбай">
+              <div class="photo__description">
+                <h2 class="photo__title">Домбай</h2>
+                <button class="photo__like" type="button">Нравится</button>
+              </div>
+            </li>
+            <li class="photo__card">
+              <img class="photo__image" src="./images/karachaevo-cherk.jpg" alt="Карачаево-Черкессия">
+              <div class="photo__description">
+                <h2 class="photo__title">Карачаево-Черкессия</h2>
+                <button class="photo__like" type="button">Нравится</button>
+              </div>
+            </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">© 2020 Mesto Russia</footer>
+  </div>
+
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
+      <form action="#" method="POST" class="form" name="edit-profile">
+        <h2 class="form__title">Редактировать профиль</h2>
+        <fieldset class="form__text-area">
+          <input type="text" class="form__item form__item_name" name="profile-name" value="Жак-Ив Кусто" placeholder="Имя">
+        </fieldset>
+        <fieldset class="form__text-area">
+          <input type="text" class="form__item form__item_job" name="profile-job" value="Исследователь океана" placeholder="Работа">
+        </fieldset>
+        <button type="submit" class="form__keep">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
