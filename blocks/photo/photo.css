@@ -9,7 +9,7 @@
   line-height: 0;
  }
 
- @media screen and (max-width: 880px) {
+ @media screen and (max-width: 900px) {
   .photo {
     grid-template-columns: repeat(2, calc((100% - 17px) / 2 ) );
   }

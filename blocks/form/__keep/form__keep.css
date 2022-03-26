@@ -4,14 +4,15 @@
   color: #fff;
   width: 100%;
   height: 50px;
-  font-family: 'Inter';
+  font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 21.78px;
   text-align: center;
-  padding: 14px 0 18px;
+  padding: 14px 0 14px;
   cursor: pointer;
+  margin-top: 48px;
 }
 
 .form__keep:hover {
@@ -23,7 +24,8 @@
   .form__keep {
     font-weight: 400;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 16.94px;
+    margin-top: 45px;
 
   }
 }

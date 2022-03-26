@@ -75,14 +75,14 @@
   <div class="popup">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
+      <h2 class="form__title">Редактировать профиль</h2>
       <form action="#" method="POST" class="form" name="edit-profile">
-        <h2 class="form__title">Редактировать профиль</h2>
-        <fieldset class="form__text-area">
-          <input type="text" class="form__item form__item_name" name="profile-name" value="Жак-Ив Кусто" placeholder="Имя">
-        </fieldset>
-        <fieldset class="form__text-area">
-          <input type="text" class="form__item form__item_job" name="profile-job" value="Исследователь океана" placeholder="Работа">
-        </fieldset>
+        <div class="form__text-area">
+          <input type="text" class="form__item form__item_type_name" name="profile-name" value="" placeholder="Имя">
+        </div>
+        <div class="form__text-area">
+          <input type="text" class="form__item form__item_type_job" name="profile-job" value="" placeholder="Работа">
+        </div>
         <button type="submit" class="form__keep">Сохранить</button>
       </form>
     </div>

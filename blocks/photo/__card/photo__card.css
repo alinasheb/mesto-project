@@ -2,5 +2,6 @@
   background: #FFF;
   border-radius: 10px;
   color: #000;
-  max-height: 361px;
+  display: flex;
+  flex-direction: column;
 }

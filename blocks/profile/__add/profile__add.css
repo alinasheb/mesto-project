@@ -6,22 +6,23 @@
   width: 150px;
   height: 50px;
   justify-content: center;
-  background-color: #000;
+  background-color: transparent;
   background-image: url(../../../images/profile-add.svg);
   background-repeat: no-repeat;
   background-position: center;
   font-size: 0;
   cursor: pointer;
-  /*transition: opacity 0.3s ease-in-out;*/
+
 }
 
 .profile__add:hover {
   opacity: 0.6;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .profile__add {
+    background-image: url(../../../images/Vector\ mob.svg);
     margin-top: 36px;
-    width: 88%;
+    width: 100%;
   }
 }
