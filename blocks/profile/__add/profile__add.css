@@ -12,7 +12,6 @@
   background-position: center;
   font-size: 0;
   cursor: pointer;
-
 }
 
 .profile__add:hover {
@@ -21,7 +20,7 @@
 
 @media screen and (max-width: 700px) {
   .profile__add {
-    background-image: url(../../../images/Vector\ mob.svg);
+    background-image: url(../../../images/ProfileAddMob.svg);
     margin-top: 36px;
     width: 100%;
   }

@@ -10,9 +10,3 @@
   justify-content: center;
   align-items: center;
 }
-
-@media screen and (max-width: 380px) {
-  .popup {
-    padding: 0 19px;
-  }
-}
