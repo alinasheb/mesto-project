@@ -9,6 +9,8 @@ let jobProfile = document.querySelector('.profile__job'); //работа
 
 
 function openPopup() {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
   popup.classList.add('popup_opened');
 }
 
