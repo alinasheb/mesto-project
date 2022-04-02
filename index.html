@@ -24,59 +24,18 @@
       </section>
       <section class="photo-elements">
         <ul class="photo">
-          <li class="photo__card">
-            <img class="photo__image" src="./images/karachaevo-cherk.jpg" alt="Карачаевск">
-            <div class="photo__description">
-              <h2 class="photo__title">Карачаевск</h2>
-              <button class="photo__like" type="button">Нравится</button>
-            </div>
-          </li>
-            <li class="photo__card">
-              <img class="photo__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-              <div class="photo__description">
-                <h2 class="photo__title">Гора Эльбрус</h2>
-                <button class="photo__like" type="button">Нравится</button>
-              </div>
-            </li>
-            <li class="photo__card">
-              <img class="photo__image" src="./images/Dombai.jpg" alt="Домбай">
-              <div class="photo__description">
-                <h2 class="photo__title">Домбай</h2>
-                <button class="photo__like" type="button">Нравится</button>
-              </div>
-            </li>
-            <li class="photo__card">
-              <img class="photo__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-              <div class="photo__description">
-                <h2 class="photo__title">Гора Эльбрус</h2>
-                <button class="photo__like" type="button">Нравится</button>
-              </div>
-            </li>
-            <li class="photo__card">
-              <img class="photo__image" src="./images/Dombai.jpg" alt="Домбай">
-              <div class="photo__description">
-                <h2 class="photo__title">Домбай</h2>
-                <button class="photo__like" type="button">Нравится</button>
-              </div>
-            </li>
-            <li class="photo__card">
-              <img class="photo__image" src="./images/karachaevo-cherk.jpg" alt="Карачаево-Черкессия">
-              <div class="photo__description">
-                <h2 class="photo__title">Карачаево-Черкессия</h2>
-                <button class="photo__like" type="button">Нравится</button>
-              </div>
-            </li>
+
         </ul>
       </section>
     </main>
     <footer class="footer">© 2020 Mesto Russia</footer>
   </div>
 
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="#" method="POST" class="form" name="edit-profile">
+      <form action="#" method="POST" class="form form_type_profile" name="edit-profile">
         <div class="form__text-area">
           <input type="text" class="form__item form__item_type_name" name="profile-name" value="" placeholder="Имя">
         </div>
@@ -87,6 +46,42 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_photo">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
+      <h2 class="popup__title">Новое место</h2>
+      <form action="#" method="POST" class="form form_type_photo" name="add-photo">
+        <div class="form__text-area">
+          <input type="text" class="form__item form__item_type_title" name="photo-title" value="" placeholder="Название">
+        </div>
+        <div class="form__text-area">
+          <input type="text" class="form__item form__item_type_image" name="photo-image" value="" placeholder="Ссылка на картинку">
+        </div>
+        <button type="submit" class="form__keep">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_open-photo">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
+      <img class="popup__big-photo" src="#" alt="Фото">
+      <h2 class="popup__photo-caption"></h2>
+    </div>
+  </div>
+
+  <template class="photo-template">
+    <li class="photo__card">
+      <button type="submit" class="photo__delete">Удалить</button>
+      <img class="photo__image" src="#" alt="Фото">
+      <div class="photo__description">
+        <h2 class="photo__title"></h2>
+        <button class="photo__like" type="button">Нравится</button>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
 </body>
 </html>
