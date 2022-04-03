@@ -17,42 +17,53 @@ const imagePhoto = document.querySelector('.photo__image'); //значение �
 const buttonAdd = document.querySelector('.profile__add'); //кнопка добавления фото-открыть попап добавления фото
 const buttonClosePhoto = popupPhoto.querySelector('.popup__close'); //кнопка закрытия попапа
 
+const container = document.querySelector('.photo-elements');
+const containerPhoto = container.querySelector('.photo'); //поле для добавления карточек
+const cardTemplate = document.querySelector('.photo-template').content; //темплейт элемент
+
+const popupBigPhoto = document.querySelector('.popup_type_open-photo'); //поле открытия большого фото
+const bigPhotoContainer = popupBigPhoto.querySelector('.popup__container');
+const bigPhoto = popupBigPhoto.querySelector('.popup__big-photo'); //большое фото
+const bigPhotoTitle = popupBigPhoto.querySelector('.popup__photo-caption'); //подпись к большому фото\
+
+const buttonCloseBigPhoto = popupBigPhoto.querySelector('.popup__close');
+
 //функция открытия попапа
 function openPopup(item) {
   item.classList.add('popup_opened');
 }
 
 //функция открытия попапа редактирования профиля
-function PrifileEdit() {
+function editProfile() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 
   openPopup(popupProfile);
 }
-buttonEdit.addEventListener('click', PrifileEdit);
+buttonEdit.addEventListener('click', editProfile);
 
 //функция открытия попапа добавления фото
-const PhotoAdd = () => {openPopup(popupPhoto);};
-buttonAdd.addEventListener('click', PhotoAdd);
+const addPhoto = () => {openPopup(popupPhoto);};
+buttonAdd.addEventListener('click', addPhoto);
 
 //функция закрытия попапа
-function closedPopup(item) {
+function closePopup(item) {
   item.classList.remove('popup_opened');
 }
 //закрытие попап профиль
-const closedPopupProfile = () => {closedPopup(popupProfile);};
-buttonCloseProfile.addEventListener('click', closedPopupProfile);
+const closePopupProfile = () => {closePopup(popupProfile);};
+buttonCloseProfile.addEventListener('click', closePopupProfile);
 
 //закрытие попап фото
-const closedPopupPhoto = () => {closedPopup(popupPhoto);};
-buttonClosePhoto.addEventListener('click', closedPopupPhoto);
+const closePopupPhoto = () => {closePopup(popupPhoto);};
+buttonClosePhoto.addEventListener('click', closePopupPhoto);
 
 //отправка формы попап редактирования профиля
 function formSubmitHandler (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closedPopup(popupProfile);
+  closePopup(popupProfile);
 };
 formElement.addEventListener('submit', formSubmitHandler);
 
@@ -86,70 +97,57 @@ const initialCards = [
 ];
 
 
-const container = document.querySelector('.photo-elements');
-const containerPhoto = container.querySelector('.photo'); //поле для добавления карточек
-const CardTemplate = document.querySelector('.photo-template').content; //темплейт элемент
 
-function CreateCard(element) {
-  const Card = CardTemplate.querySelector('.photo__card').cloneNode(true); //клонируем карточку фото
-  const cardPhoto = Card.querySelector('.photo__image'); //значение ввода ссылки на картинку
-  const cardTitle = Card.querySelector('.photo__title'); //значение ввода подписи к картинке
-
+function createCard(element) {
+  const card = cardTemplate.querySelector('.photo__card').cloneNode(true); //клонируем карточку фото
+  const cardPhoto = card.querySelector('.photo__image'); //значение ввода ссылки на картинку
+  const cardTitle = card.querySelector('.photo__title'); //значение ввода подписи к картинке
   cardPhoto.alt = element.name;
   cardPhoto.src = element.link;
   cardTitle.textContent = element.name;
 
-  const buttonLike = Card.querySelector('.photo__like'); //кнопка лайка
+  const buttonLike = card.querySelector('.photo__like'); //кнопка лайка
   buttonLike.addEventListener('click', function (evt) {
     evt.target.classList.toggle('photo__like_active');
   });
 
-  const buttonDelete = Card.querySelector('.photo__delete'); //кнопка удаления фото
+  const buttonDelete = card.querySelector('.photo__delete'); //кнопка удаления фото
   buttonDelete.addEventListener('click', function (evt) {
    evt.target.closest('.photo__card').remove();
   });
 
-  const popupBigPhoto = document.querySelector('.popup_type_open-photo'); //поле открытия большого фото
-  const bigPhotoContainer = popupBigPhoto.querySelector('.popup__container');
-  const bigPhoto = popupBigPhoto.querySelector('.popup__big-photo'); //большое фото
-  const bigPhotoTitle = popupBigPhoto.querySelector('.popup__photo-caption'); //подпись к большому фото
+  const closePopupBigPhoto = () => {closePopup(popupBigPhoto);};
+  buttonCloseBigPhoto.addEventListener('click', closePopupBigPhoto);
 
+  cardPhoto.addEventListener('click', openBigPhoto);
 
-  function bigPhotoOpen() {
+  function openBigPhoto() {
     //evt.preventDefault();
-    openPopup(popupBigPhoto);
     bigPhoto.src = cardPhoto.src;
     bigPhoto.alt = cardPhoto.alt;
     bigPhotoTitle.textContent = cardTitle.textContent;
-
+    openPopup(popupBigPhoto);
   }
-  cardPhoto.addEventListener('click', bigPhotoOpen);
 
-  //закрытие попап фото
-  const buttonCloseBigPhoto = popupBigPhoto.querySelector('.popup__close');
-
-  const closedPopupBigPhoto = () => {closedPopup(popupBigPhoto);};
-  buttonCloseBigPhoto.addEventListener('click', closedPopupBigPhoto);
-
-  return Card;
+  return card;
 
 }
 
-initialCards.forEach(function (Card) {
-  containerPhoto.append(CreateCard(Card));
+initialCards.forEach(function (card) {
+  containerPhoto.append(createCard(card));
 });
 
 
 function addCard(element) {
-  //const cardItem = CreateCard(element);
-  containerPhoto.prepend(CreateCard(element));
+  //const cardItem = createCard(element);
+  containerPhoto.prepend(createCard(element));
 };
 
-function PhotoSubmitHandler (evt) {
+function SubmitHandlerPhoto (evt) {
   evt.preventDefault();
   addCard({name: titleInput.value, link: imageInput.value});
-  closedPopup(popupPhoto);
-  evt.currentTarget.reset();
+  closePopup(popupPhoto);
+  evt.target.reset();
 };
 
-photoElement.addEventListener('submit', PhotoSubmitHandler);
+photoElement.addEventListener('submit', SubmitHandlerPhoto);

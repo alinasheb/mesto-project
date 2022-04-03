@@ -6,8 +6,7 @@
   background-image: url(../../../images/Delete.svg);
   background-position: center;
   background-repeat: no-repeat;
-  /*background: url('../../../images/PhotoDelete.svg') center no-repeat;*/
-  font-size: 0; /* Скрываем текст */
+  font-size: 0;
   border: none;
   cursor: pointer;
   position: absolute;
@@ -15,7 +14,7 @@
   right: 20px;
 }
 
-.photo_delete:hover {
+.photo__delete:hover {
   opacity: 0.6;
 }
 

@@ -10,13 +10,14 @@
 @import url(../blocks/photo/__delete/photo__delete.css);
 @import url(../blocks/photo/__like/photo__like.css);
 @import url(../blocks/photo/__like/_active/photo__like_active.css);
-@import url(../blocks/popup/__big-photo/popup__big-photo.css);
-@import url(../blocks/popup/__photo-caption/popup__photo-caption.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__big-photo/popup__big-photo.css);
+@import url(../blocks/popup/__photo-caption/popup__photo-caption.css);
+@import url(../blocks/popup/_type_open-photo/popup_type_open-photo.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__container/popup__container.css);
