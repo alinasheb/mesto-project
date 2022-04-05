@@ -1,4 +1,3 @@
-
 const popupProfile = document.querySelector('.popup_type_profile'); //попапа редактирования профиля
 const formElement = document.querySelector('.form_type_profile'); //форма редактирования-сохранения  профиля
 const nameInput = formElement.querySelector('.form__item_type_name'); //поле ввода имени
@@ -95,8 +94,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   },
 ];
-
-
+const closePopupBigPhoto = () => {closePopup(popupBigPhoto);};
+buttonCloseBigPhoto.addEventListener('click', closePopupBigPhoto);
 
 function createCard(element) {
   const card = cardTemplate.querySelector('.photo__card').cloneNode(true); //клонируем карточку фото
@@ -115,9 +114,6 @@ function createCard(element) {
   buttonDelete.addEventListener('click', function (evt) {
    evt.target.closest('.photo__card').remove();
   });
-
-  const closePopupBigPhoto = () => {closePopup(popupBigPhoto);};
-  buttonCloseBigPhoto.addEventListener('click', closePopupBigPhoto);
 
   cardPhoto.addEventListener('click', openBigPhoto);
 
@@ -147,7 +143,7 @@ function SubmitHandlerPhoto (evt) {
   evt.preventDefault();
   addCard({name: titleInput.value, link: imageInput.value});
   closePopup(popupPhoto);
-  evt.target.reset();
+  photoElement.reset();
 };
 
 photoElement.addEventListener('submit', SubmitHandlerPhoto);
