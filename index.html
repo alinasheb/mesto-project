@@ -35,12 +35,14 @@
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="#" method="POST" class="form form_type_profile" name="edit-profile">
+      <form action="#" method="POST" class="form form_type_profile" name="edit-profile" novalidate>
         <div class="form__text-area">
-          <input type="text" class="form__item form__item_type_name" name="profile-name" value="" placeholder="Имя">
+          <input type="text" class="form__item form__item_type_name" id="name-item" name="profile-name" minlength="2" maxlength="40" value="" placeholder="Имя" required>
+          <span class="form__item-error name-item-error "></span>
         </div>
         <div class="form__text-area">
-          <input type="text" class="form__item form__item_type_job" name="profile-job" value="" placeholder="Работа">
+          <input type="text" class="form__item form__item_type_job" id="job-item" name="profile-job" minlength="2" maxlength="200" value="" placeholder="Работа" required>
+          <span class="form__item-error job-item-error"></span>
         </div>
         <button type="submit" class="form__keep">Сохранить</button>
       </form>
@@ -51,12 +53,14 @@
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
       <h2 class="popup__title">Новое место</h2>
-      <form action="#" method="POST" class="form form_type_photo" name="add-photo">
+      <form action="#" method="POST" class="form form_type_photo" name="add-photo" novalidate>
         <div class="form__text-area">
-          <input type="text" class="form__item form__item_type_title" name="photo-title" value="" placeholder="Название">
+          <input type="text" class="form__item form__item_type_title" id="title-item" name="photo-title" minlength="2" maxlength="30" value="" placeholder="Название" required>
+          <span class="form__item-error title-item-error"></span>
         </div>
         <div class="form__text-area">
-          <input type="text" class="form__item form__item_type_image" name="photo-image" value="" placeholder="Ссылка на картинку">
+          <input  type="url" class="form__item form__item_type_image" id="image-item" name="photo-image" value="" placeholder="Ссылка на картинку" required>
+          <span class="form__item-error image-item-error"></span>
         </div>
         <button type="submit" class="form__keep">Создать</button>
       </form>
@@ -83,5 +87,6 @@
   </template>
 
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
-const popupProfile = document.querySelector('.popup_type_profile'); //попапа редактирования профиля
-const formElement = document.querySelector('.form_type_profile'); //форма редактирования-сохранения  профиля
-const nameInput = formElement.querySelector('.form__item_type_name'); //поле ввода имени
-const jobInput = formElement.querySelector('.form__item_type_job'); //поле ввод работы
+const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup_type_profile'); //попап редактирования профиля
+const profileElement = document.querySelector('.form_type_profile'); //форма редактирования-сохранения  профиля
+const nameInput = profileElement.querySelector('.form__item_type_name'); //поле ввода имени
+const jobInput = profileElement.querySelector('.form__item_type_job'); //поле ввод работы
 const nameProfile = document.querySelector('.profile__name'); // значение имя
 const jobProfile = document.querySelector('.profile__job'); //значение работа
 const buttonEdit = document.querySelector('.profile__edit'); //кнопка редактирования профиля-открыть попап редактирования
@@ -27,9 +28,14 @@ const bigPhotoTitle = popupBigPhoto.querySelector('.popup__photo-caption'); //п
 
 const buttonCloseBigPhoto = popupBigPhoto.querySelector('.popup__close');
 
+
 //функция открытия попапа
 function openPopup(item) {
   item.classList.add('popup_opened');
+
+  //обработчики по esc и по клику на оверлей
+  document.addEventListener('keydown', closeClickKey);
+  document.addEventListener('mousedown', closeClickOverlay);
 }
 
 //функция открытия попапа редактирования профиля
@@ -48,7 +54,29 @@ buttonAdd.addEventListener('click', addPhoto);
 //функция закрытия попапа
 function closePopup(item) {
   item.classList.remove('popup_opened');
+
+  //обработчики по esc и по клику на оверлей
+  document.removeEventListener('keydown', closeClickKey);
+  document.removeEventListener('mousedown', closeClickOverlay);
 }
+
+
+//функция закрытия попапа по esc
+function closeClickKey (evt) {
+  const activPopup = document.querySelector('.popup_opened');
+  if (activPopup && evt.key === 'Escape') {
+    closePopup(activPopup);
+  }
+}
+
+//функция закрытия попапа кликом на оверлей
+function closeClickOverlay (evt) {
+  const activPopup = document.querySelector('.popup_opened');
+  if (activPopup && evt.target === activPopup) {
+    closePopup(activPopup);
+  }
+}
+
 //закрытие попап профиль
 const closePopupProfile = () => {closePopup(popupProfile);};
 buttonCloseProfile.addEventListener('click', closePopupProfile);
@@ -57,6 +85,8 @@ buttonCloseProfile.addEventListener('click', closePopupProfile);
 const closePopupPhoto = () => {closePopup(popupPhoto);};
 buttonClosePhoto.addEventListener('click', closePopupPhoto);
 
+
+
 //отправка формы попап редактирования профиля
 function formSubmitHandler (evt) {
   evt.preventDefault();
@@ -64,7 +94,7 @@ function formSubmitHandler (evt) {
   jobProfile.textContent = jobInput.value;
   closePopup(popupProfile);
 };
-formElement.addEventListener('submit', formSubmitHandler);
+profileElement.addEventListener('submit', formSubmitHandler);
 
 //массив
 
@@ -147,3 +177,6 @@ function SubmitHandlerPhoto (evt) {
 };
 
 photoElement.addEventListener('submit', SubmitHandlerPhoto);
+
+
+
