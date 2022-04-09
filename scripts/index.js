@@ -1,4 +1,4 @@
-const popup = document.querySelector('.popup');
+const popup = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_type_profile'); //попап редактирования профиля
 const profileElement = document.querySelector('.form_type_profile'); //форма редактирования-сохранения  профиля
 const nameInput = profileElement.querySelector('.form__item_type_name'); //поле ввода имени
@@ -35,10 +35,9 @@ const buttonSubmit = photoElement.querySelector('.form__keep');
 function openPopup(item) {
   item.classList.add('popup_opened');
 
-  //обработчики по esc и по клику на оверлей
+  //обработчик по esc
   document.addEventListener('keydown', closeClickKey);
-  document.addEventListener('mousedown', closeClickOverlay);
-}
+};
 
 //функция открытия попапа редактирования профиля
 function editProfile() {
@@ -57,9 +56,8 @@ buttonAdd.addEventListener('click', addPhoto);
 function closePopup(item) {
   item.classList.remove('popup_opened');
 
-  //обработчики по esc и по клику на оверлей
+  //обработчик по esc
   document.removeEventListener('keydown', closeClickKey);
-  document.removeEventListener('mousedown', closeClickOverlay);
 }
 
 
@@ -72,12 +70,20 @@ function closeClickKey (evt) {
 }
 
 //функция закрытия попапа кликом на оверлей
-function closeClickOverlay (evt) {
-  if (evt.target === evt.target.closest('.popup')) {
-    closePopup(evt.target.closest('.popup'));
+function closeClickOverlay (item)  {
+  item.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup_close')) {
+    closePopup(item);
   }
-}
+})};
 
+function ClosePopupOverlayAll  (popup) {
+  popup.forEach((item) => {
+    closeClickOverlay(item);
+  });
+};
+
+ClosePopupOverlayAll(popup);
 
 //закрытие попап профиль
 const closePopupProfile = () => {closePopup(popupProfile);};
@@ -86,7 +92,6 @@ buttonCloseProfile.addEventListener('click', closePopupProfile);
 //закрытие попап фото
 const closePopupPhoto = () => {closePopup(popupPhoto);};
 buttonClosePhoto.addEventListener('click', closePopupPhoto);
-
 
 
 //отправка формы попап редактирования профиля
