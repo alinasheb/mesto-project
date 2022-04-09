@@ -4,7 +4,9 @@
   font-size: 12px;
   line-height: 15px;
   color: #f00000;
-  margin: 5px 0 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
 }
 
 

@@ -28,6 +28,8 @@ const bigPhotoTitle = popupBigPhoto.querySelector('.popup__photo-caption'); //п
 
 const buttonCloseBigPhoto = popupBigPhoto.querySelector('.popup__close');
 
+const buttonSubmit = photoElement.querySelector('.form__keep');
+
 
 //функция открытия попапа
 function openPopup(item) {
@@ -63,19 +65,19 @@ function closePopup(item) {
 
 //функция закрытия попапа по esc
 function closeClickKey (evt) {
-  const activPopup = document.querySelector('.popup_opened');
-  if (activPopup && evt.key === 'Escape') {
+  if (evt.key === 'Escape') {
+    const activPopup = document.querySelector('.popup_opened');
     closePopup(activPopup);
   }
 }
 
 //функция закрытия попапа кликом на оверлей
 function closeClickOverlay (evt) {
-  const activPopup = document.querySelector('.popup_opened');
-  if (activPopup && evt.target === activPopup) {
-    closePopup(activPopup);
+  if (evt.target === evt.target.closest('.popup')) {
+    closePopup(evt.target.closest('.popup'));
   }
 }
+
 
 //закрытие попап профиль
 const closePopupProfile = () => {closePopup(popupProfile);};
@@ -169,11 +171,17 @@ function addCard(element) {
   containerPhoto.prepend(createCard(element));
 };
 
+function resetButtonSubmit() {
+  buttonSubmit.classList.add('form__keep_inactive');
+  buttonSubmit.setAttribute('disabled', true);
+};
+
 function SubmitHandlerPhoto (evt) {
   evt.preventDefault();
   addCard({name: titleInput.value, link: imageInput.value});
   closePopup(popupPhoto);
   photoElement.reset();
+  resetButtonSubmit();
 };
 
 photoElement.addEventListener('submit', SubmitHandlerPhoto);
