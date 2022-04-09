@@ -77,13 +77,13 @@ function closeClickOverlay (item)  {
   }
 })};
 
-function ClosePopupOverlayAll  (popup) {
+function closePopupOverlayAll  (popup) {
   popup.forEach((item) => {
     closeClickOverlay(item);
   });
 };
 
-ClosePopupOverlayAll(popup);
+closePopupOverlayAll(popup);
 
 //закрытие попап профиль
 const closePopupProfile = () => {closePopup(popupProfile);};
