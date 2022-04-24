@@ -7,6 +7,7 @@ class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+
   }
 
   _getTemplate() {
@@ -21,17 +22,22 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.photo__image');
+
+
     this._setEventListeners();
 
-    this._element.querySelector('.photo__image').src = this._link;
-    this._element.querySelector('.photo__image').alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.photo__title').textContent = this._name;
 
     return this._element;
   }
 
   _setEventListeners(){
-    this._element.querySelector('.photo__like').addEventListener('click', () => {
+    this._likeButton = this._element.querySelector('.photo__like');
+
+    this._likeButton.addEventListener('click', () => {
       this._handleCardLike();
     });
     this._element.querySelector('.photo__delete').addEventListener('click', () => {
@@ -44,7 +50,7 @@ class Card {
 
   //лайк карточки
   _handleCardLike() {
-    this._element.querySelector('.photo__like').classList.toggle('photo__like_active');
+    this._likeButton.classList.toggle('photo__like_active');
   }
 
   //удаление карточки

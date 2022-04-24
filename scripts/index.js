@@ -27,7 +27,7 @@ export const openPopup= (item) => {
   item.classList.add('popup_opened');
 
   //обработчик по esc
-  document.addEventListener('keydown', closeClickKey);
+  document.addEventListener('keydown', handleEscKey);
 };
 
 //функция открытия попапа редактирования профиля
@@ -48,11 +48,11 @@ function closePopup(item) {
   item.classList.remove('popup_opened');
 
   //обработчик по esc
-  document.removeEventListener('keydown', closeClickKey);
+  document.removeEventListener('keydown', handleEscKey);
 }
 
 //функция закрытия попапа по esc
-function closeClickKey (evt) {
+function handleEscKey (evt) {
   if (evt.key === 'Escape') {
     const activPopup = document.querySelector('.popup_opened');
     closePopup(activPopup);
@@ -62,7 +62,7 @@ function closeClickKey (evt) {
 //функция закрытия попапа кликом на оверлей
 function closeClickOverlay (item)  {
   item.addEventListener('mousedown', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup_close')) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
     closePopup(item);
   }
 })};
@@ -75,28 +75,16 @@ function closePopupOverlayAll  (popups) {
 
 closePopupOverlayAll(popups);
 
-//закрытие попап профиль
-const closePopupProfile = () => {closePopup(popupProfile);};
-buttonCloseProfile.addEventListener('click', closePopupProfile);
-
-//закрытие попап фото
-const closePopupPhoto = () => {closePopup(popupPhoto);};
-buttonClosePhoto.addEventListener('click', closePopupPhoto);
-
-//закрытие фото
-const closePopupBigPhoto = () => {closePopup(popupBigPhoto);};
-buttonCloseBigPhoto.addEventListener('click', closePopupBigPhoto);
-
-
 
 //отправка формы попап редактирования профиля
-function formSubmitHandler (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
   closePopup(popupProfile);
+  validateFormProfile.resetValidation();
 };
-profileElement.addEventListener('submit', formSubmitHandler);
+profileElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 initialCards.forEach(function (card) {
@@ -109,13 +97,14 @@ function addCard(element) {
 };
 
 
-function SubmitHandlerPhoto (evt) {
+function handlePhotoSubmit (evt) {
   evt.preventDefault();
   addCard({name: titleInput.value, link: imageInput.value});
   closePopup(popupPhoto);
   photoElement.reset();
+  validateFormPhoto.resetValidation();
 };
 
-photoElement.addEventListener('submit', SubmitHandlerPhoto);
+photoElement.addEventListener('submit', handlePhotoSubmit);
 
 
