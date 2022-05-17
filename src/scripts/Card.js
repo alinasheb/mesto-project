@@ -1,12 +1,13 @@
-import {popupBigPhoto, bigPhoto, bigPhotoTitle} from '../scripts/constants.js';
-import {openPopup} from '../scripts/index.js';
+//import {popupBigPhoto, bigPhoto, bigPhotoTitle} from '../scripts/constants.js';
+//import {openPopup} from '../scripts/index.js';
 
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
 
   }
 
@@ -22,13 +23,13 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._cardImage = this._element.querySelector('.photo__image');
+    const cardImage = this._element.querySelector('.photo__image');
 
 
     this._setEventListeners();
 
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
     this._element.querySelector('.photo__title').textContent = this._name;
 
     return this._element;
@@ -59,14 +60,15 @@ class Card {
   }
 
   //открытие большого фото
-  _handleCardClick() {
+  /*_handleCardClick() {
     bigPhoto.src = this._link;
     bigPhoto.alt = this._name;
     bigPhotoTitle.textContent = this._name;
     openPopup(popupBigPhoto);
 
-  }
+  }*/
 }
+
 
 
 export default Card;
