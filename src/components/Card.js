@@ -1,11 +1,8 @@
-//import {popupBigPhoto, bigPhoto, bigPhotoTitle} from '../scripts/constants.js';
-//import {openPopup} from '../scripts/index.js';
-
 
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({name, link}, cardSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
 
@@ -45,9 +42,10 @@ class Card {
       this._handleCardDelete();
     });
     this._element.querySelector('.photo__image').addEventListener('click' , () => {
-      this._handleCardClick();
+      this._handleCardClick(this._name, this._link);
     });
   }
+
 
   //лайк карточки
   _handleCardLike() {
@@ -57,16 +55,9 @@ class Card {
   //удаление карточки
   _handleCardDelete() {
     this._element.remove();
+    this._element = null;
   }
 
-  //открытие большого фото
-  /*_handleCardClick() {
-    bigPhoto.src = this._link;
-    bigPhoto.alt = this._name;
-    bigPhotoTitle.textContent = this._name;
-    openPopup(popupBigPhoto);
-
-  }*/
 }
 
 

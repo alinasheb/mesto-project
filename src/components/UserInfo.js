@@ -21,8 +21,3 @@ class UserInfo {
 
 export default UserInfo;
 
-
-/*this._userInfo = {};
-    this._userInfo.name = this._name.textContent;
-    this._userInfo.job = this._job.textContent;
-    return this._userInfo;*/

@@ -2,6 +2,7 @@ class FormValidator {
   constructor(data, formElement) {
     this._data = data;
     this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._data.inputSelector));
 
     this._buttonElement = this._formElement.querySelector(this._data.submitButtonSelector);
   }
@@ -55,7 +56,6 @@ class FormValidator {
   }
 
   enableValidation() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._data.inputSelector));
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
