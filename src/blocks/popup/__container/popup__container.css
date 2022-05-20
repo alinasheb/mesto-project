@@ -21,6 +21,10 @@
   width: auto;
 }
 
+.popup_type_avatar .popup__container {
+  max-height: 272px;
+}
+
 @media screen and (max-width: 800px) {
   .popup__container {
     width: 88%;

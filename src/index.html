@@ -67,11 +67,31 @@
     </div>
   </div>
 
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form action="#" method="POST" class="form form_type_avatar" name="add-avatar" novalidate>
+        <input  type="url" class="form__item form__item_type_avatar" id="avatar-item" name="link" value="" placeholder="Ссылка на аватар" required>
+        <span class="form__item-error image-item-error"></span>
+        <button type="submit" class="form__keep">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <div class="popup popup_type_open-photo">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
       <img class="popup__big-photo" src="#" alt="Фото">
       <h2 class="popup__photo-caption"></h2>
+    </div>
+  </div>
+
+  <div class ="popup popup_type_delete-photo">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть">Закрыть</button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button type="submit" class="form__keep">Вы уверены?</button>
     </div>
   </div>
 
@@ -82,6 +102,7 @@
       <div class="photo__description">
         <h2 class="photo__title"></h2>
         <button class="photo__like" type="button">Нравится</button>
+        <div class="photo__like-count">1</div>
       </div>
     </li>
   </template>
