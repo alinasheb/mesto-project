@@ -1,21 +1,29 @@
 class UserInfo {
-  constructor({name, job}) {
+  constructor({name, about, avatar}) {
     this._name = document.querySelector(name);
-    this._job = document.querySelector(job);
-
+    this._about = document.querySelector(about);
+    this._avatar = document.querySelector(avatar);
   }
 
+  //возвратим объект с данными пользователя
   getUserInfo() {
-    const dataUser = {
+    const userInfo = {
       name: this._name.textContent,
-      job: this._job.textContent
-    };
-    return dataUser;
+      about: this._about.textContent,
+      //avatar: this._avatar.src
+    }
+
+    return userInfo;
+  }
+  //принимаем новые данные пользователя и возвращаем на страницу
+  setUsetInfo(data) {
+    this._name.textContent = data.name;
+    this._about.textContent = data.about;
+    //this._avatar.src = data.avatar;
   }
 
-  setUserInfo({name, job}) {
-    this._name.textContent = name;
-    this._job.textContent = job;
+  setUserAvatar(data) {
+    this._avatar.src = data.avatar || data.link;
   }
 }
 

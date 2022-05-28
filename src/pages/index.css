@@ -8,7 +8,10 @@
 @import url(../blocks/photo/__description/photo__description.css);
 @import url(../blocks/photo/__title/photo__title.css);
 @import url(../blocks/photo/__delete/photo__delete.css);
+@import url(../blocks/photo/__delete/_hidden/photo__delete_hidden.css);
+@import url(../blocks/photo/__likes/photo__likes.css);
 @import url(../blocks/photo/__like/photo__like.css);
+@import url(../blocks/photo/__like-counter/photo__like-counter.css);
 @import url(../blocks/photo/__like/_active/photo__like_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/header/header.css);
@@ -36,6 +39,9 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__job/profile__job.css);
 @import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__background/profile__background.css);
+@import url(../blocks/profile/__photo-add/profile__photo-add.css);
 
 
 
