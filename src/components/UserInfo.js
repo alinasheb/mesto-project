@@ -16,7 +16,7 @@ class UserInfo {
     return userInfo;
   }
   //принимаем новые данные пользователя и возвращаем на страницу
-  setUsetInfo(data) {
+  setUserInfo(data) {
     this._name.textContent = data.name;
     this._about.textContent = data.about;
     //this._avatar.src = data.avatar;
@@ -25,6 +25,16 @@ class UserInfo {
   setUserAvatar(data) {
     this._avatar.src = data.avatar || data.link;
   }
+
+//получим айди пользователя
+  //getId() {
+    //return this._id;
+  //}
+
+  //установим айти пользователя
+  //setId(id) {
+    //this._id = id;
+ // }
 }
 
 export default UserInfo;

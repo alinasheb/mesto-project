@@ -3,6 +3,7 @@ class Api {
   constructor(options) {
     this._url = options.url;
     this._headers = options.headers;
+
   }
 
   getInitialCard() {
@@ -93,7 +94,7 @@ editUserInfo(data) {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject('Ошибка: ${res.status}');
+      return Promise.reject(`Ошибка:${res.status}`);
     }
   }
 }
