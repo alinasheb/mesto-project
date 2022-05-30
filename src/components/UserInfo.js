@@ -26,15 +26,6 @@ class UserInfo {
     this._avatar.src = data.avatar || data.link;
   }
 
-//получим айди пользователя
-  //getId() {
-    //return this._id;
-  //}
-
-  //установим айти пользователя
-  //setId(id) {
-    //this._id = id;
- // }
 }
 
 export default UserInfo;

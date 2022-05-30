@@ -3,7 +3,6 @@ class Api {
   constructor(options) {
     this._url = options.url;
     this._headers = options.headers;
-
   }
 
   getInitialCard() {
@@ -25,27 +24,26 @@ class Api {
 }
 
 
-editUserInfo(data) {
+setUserInfo(item) {
   return fetch(`${this._url}/users/me`, {
     method: 'PATCH',
     headers: this._headers,
     body: JSON.stringify({
-      name: data.name,
-      about: data.about,
+      name: item.name,
+      about: item.about,
     }),
   }).then((res) => {
     return this.getResponseData(res);
   });
 }
 
-  setAvatar(data) {
+  setAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({
-        avatar: data,
-      }),
-    }).then((res) => {
+      body: JSON.stringify(avatar),
+      })
+    .then((res) => {
       return this.getResponseData(res);
     });
   }
@@ -63,8 +61,8 @@ editUserInfo(data) {
     });
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}`, {
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
@@ -72,8 +70,8 @@ editUserInfo(data) {
     });
   }
 
-  addLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+  addLike(id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,
     }).then((res) => {
@@ -81,8 +79,8 @@ editUserInfo(data) {
     });
   }
 
-  deleteLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+  deleteLike(id) {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
@@ -94,7 +92,7 @@ editUserInfo(data) {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(`Ошибка:${res.status}`);
+      return Promise.reject(`Ошибка: ${res.status}`);
     }
   }
 }

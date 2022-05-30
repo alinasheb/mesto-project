@@ -1,16 +1,15 @@
 export default class Card {
-  constructor({name, link, likes, _id, owner},  selector, userId, handleCardClick, handleDeleteClick,  addLike, deleteLike) {
-    this._name = name;
-    this._link = link;
-    this._likes = likes;
+  constructor(data,  selector, userId, handleCardClick, {handleDeleteClick, handleLikeClick}) {
+    this._name = data.name;
+    this._link = data.link;
+    this._likes = data.likes;
     this._userId = userId;
-    this._id = _id;
-    this._owner = owner;
+    this._id = data._id;
+    this._ownerId = data.owner._id;
     this._selector = selector;
     this._handleCardClick = handleCardClick;
-    this._addLike = addLike;
-    this._deleteLike = deleteLike;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   //получаем шаблон карточки
@@ -23,35 +22,57 @@ export default class Card {
     return cardElement;
   }
 
+  _getView() {
+    if(this._ownerId ===  this._userId) {
+      this._buttonDelete.classList.add('photo__delete_show');
+    }
+  }
+
+
+
   //готовая карточка
 generateCard() {
   this._element = this._getTemplate();
+  const image = this._element.querySelector('.photo__image');
 
-  this._image = this._element.querySelector('.photo__image');
-  this._likeButton = this._element.querySelector('.photo__like');
-  this._likeCounter = this._element.querySelector('.photo__like-counter');
-  this._deleteButtonCard = this._element.querySelector('.photo__delete');
+  this._buttonLike = this._element.querySelector('.photo__like');
+  this._likeCount = this._element.querySelector('.photo__like-counter');
+  this._buttonDelete = this._element.querySelector('.photo__delete');
 
-  this._image.src = this._link;
-  this._image.alt = this._name;
+
+  this._setEventListeners();
+
+
+  image.src = this._link;
+  image.alt = this._name;
   this._element.querySelector('.photo__title').textContent = this._name;
 
-  this._likeCounter.textContent = this._likes.length;
+  this._likeCount.textContent = this._likes.length;
 
-  if (this._userId === this._owner._id) {
-    this._deleteButtonCard.classList.add('photo__delete_hidden');
-    };
+  this._getView();
 
-  if (this._likes.some((user) => {
-      return this._userId === user._id;
-    })) {
-      this._likeButton.classList.add('photo__like_active');
-    };
-
-  this._likeCounter.textContent = this._likes.length;
-  this._setEventListeners();
+  if (this._likes.find((item) => this._userId === item._id)) {
+    this._buttonLike.classList.add('photo__like_active');
+  }
   return this._element;
 }
+
+
+
+isLike() {
+  return this._isLike;
+}
+
+addLike(data)  {
+  this._isLike = data.likes.filter((item) => {return item._id === this._userId;}).length > 0;
+  this._likeCount.textContent = data.likes.length;
+  if(this._isLike) {
+    this._buttonLike.classList.add('photo__like_active');
+  } else {
+    this._buttonLike.classList.remove('photo__like_active');
+  }
+}
+
 
 removeCard() {
   this._element.remove();
@@ -66,134 +87,18 @@ _handleImageClick() {
 //слушатели
 _setEventListeners() {
 
-  this._image.addEventListener('click' , () => {
+  this._element.querySelector('.photo__image').addEventListener('click' , () => {
     this._handleImageClick();
   });
 
-  this._deleteButtonCard.addEventListener('click' , () => {
-    this._handleDeleteClick(this);
+  this._buttonDelete.addEventListener('click' , () => {
+    this._handleDeleteClick();
   });
 
-  this._likeButton.addEventListener('click', () => {
-    if (this._likeButton.classList.contains('photo__like_active')) {
-      this._likeButton.classList.remove('photo__like_active');
-      this._likeCounter.textContent = this._likes.length -= 1;
-      this._deleteLike(this._id);
-    } else {
-      this._likeButton.classList.add('photo__like_active');
-      this._likeCounter.textContent = this._likes.length += 1;
-      this._addLike(this._id);
-    }
+  this._buttonLike.addEventListener('click' , (evt) => {
+    this._handleLikeClick(this,
+      evt.target.classList.contains('photo__like_active'));
   });
-
 }
 
 }
-
-/*export default class Card {
-  constructor({name, link, likes, _id, owner},  cardSelector, userId, handleLikeClick, handleCardClick, handleDeleteClick,  addLike, deleteLike) {
-    this._name = name;
-    this._link = link;
-    this._likes = likes;
-    this._userId = userId;
-    this._id = _id;
-    this._owner = owner;
-    this._cardSelector = cardSelector;
-    this._handleCardClick = handleCardClick;
-    this._addLike = addLike;
-    this._deleteLike = deleteLike;
-    this._handleDeleteClick = handleDeleteClick;
-    this._handleLikeClick = handleLikeClick;
-  }
-
-  //получаем шаблон карточки
-  _getTemplate() {
-    const cardElement = document
-    .querySelector(this._cardSelector)
-    .content.querySelector('.photo__card')
-    .cloneNode(true);
-
-    return cardElement;
-  }
-
-
-
-  //готовая карточка
-generateCard() {
-  this._element = this._getTemplate();
-
-  this._image = this._element.querySelector('.photo__image');
-  this._likeButton = this._element.querySelector('.photo__like');
-  this._likeCounter = this._element.querySelector('.photo__like-counter');
-  this._deleteButtonCard = this._element.querySelector('.photo__delete');
-  this._setEventListeners();
-
-
-  this._image.src = this._link;
-  this._image.alt = this._name;
-  this._element.querySelector('.photo__title').textContent = this._name;
-
-  this._likeCounter.textContent = this._likes.length;
-
-  if (this._userId === this._owner._id) {
-    this._deleteButtonCard.classList.add('photo__delete_hidden');
-    };
-
-  if (this._likes.some((user) => {
-      return this._userId === user._id;
-    })) {
-      this._likeButton.classList.toggle('photo__like_active');
-    };
-
-  this._likeCounter.textContent = this._likes.length;
-
-  return this._element;
-}
-
-removeCard() {
-  this._element.remove();
-  this._element = null;
-}
-
-//нажимает на карточку
-_handleImageClick() {
-  this._handleCardClick(this._name, this._link);
-}
-
-handleLike() {
-  this._likes = likes;
-  this._likeCounter.textContent = this._likes.length;
-  this._likeButton.classList.toggle('photo__like_active');
-}
-
-//слушатели
-_setEventListeners() {
-
-  this._image.addEventListener('click' , () => {
-    this._handleImageClick();
-  });
-
-  this._deleteButtonCard.addEventListener('click' , () => {
-    this._handleDeleteClick(this);
-  });
-
-  this._likeButton.addEventListener('click', () => {
-    if (this._likeButton.classList.contains('photo__like_active')) {
-      this._likeButton.classList.remove('photo__like_active');
-      this._likeCounter.textContent = this._likes.length -= 1;
-      this._deleteLike(this._id);
-    } else {
-      this._likeButton.classList.add('photo__like_active');
-      this._likeCounter.textContent = this._likes.length += 1;
-      this._addLike(this._id);
-    }
-  });
-
-  //this._likeButton.addEventListener('click' , () => {
-   // this._handleLikeClick();
-  //});
-
-}
-
-}
-*/
