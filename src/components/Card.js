@@ -24,7 +24,7 @@ export default class Card {
   }
 
   _getView() {
-    if(this._ownerId ===  this._userId) {
+    if (this._ownerId ===  this._userId) {
 
       this._buttonDelete.classList.add('photo__delete_show');
     }
@@ -35,10 +35,10 @@ generateCard() {
   const image = this._element.querySelector('.photo__image');
 
 
+
   this._buttonLike = this._element.querySelector('.photo__like');
   this._likeCount = this._element.querySelector('.photo__like-counter');
   this._buttonDelete = this._element.querySelector('.photo__delete');
-
 
   this._setEventListeners();
 
@@ -48,11 +48,13 @@ generateCard() {
 
   this._likeCount.textContent = this._likes.length;
 
-  this._getView();
 
-  if (this._likes.find((item) => this._userId === item._id)) {
+
+  if (this._likes.some((item) => this._userId === item._id)) {
     this._buttonLike.classList.add('photo__like_active');
   }
+
+  this._getView();
 
   return this._element;
 }
@@ -74,14 +76,14 @@ addLike(data)  {
 }
 
 
-removeCard() {
-  this._element.remove();
-  this._element = null;
-}
-
 //нажимает на карточку
 _handleImageClick() {
   this._handleCardClick(this._name, this._link);
+}
+
+removeCard() {
+  this._element.remove();
+  this._element = null;
 }
 
 //слушатели

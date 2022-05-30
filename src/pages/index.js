@@ -79,6 +79,7 @@ function handleLikeClick (card, data) {
 };
 
 const popupDelete = new PopupWithDelete('.popup_type_delete-photo');
+popupDelete.setEventListeners();
 
 function handleDeleteClick(card) {
   popupDelete.setFormSubmitHandler(() => {
@@ -93,8 +94,6 @@ function handleDeleteClick(card) {
 });
 popupDelete.open();
 }
-popupDelete.setEventListeners();
-
 
 
 function rendererCard (data, userId, createCard) {
