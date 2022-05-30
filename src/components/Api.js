@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 
 class Api {
   constructor(options) {
@@ -25,7 +26,7 @@ class Api {
 }
 
 
-editUserInfo(data) {
+setUserInfo(data) {
   return fetch(`${this._url}/users/me`, {
     method: 'PATCH',
     headers: this._headers,
@@ -63,8 +64,8 @@ editUserInfo(data) {
     });
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}`, {
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
