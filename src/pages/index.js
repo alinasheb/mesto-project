@@ -1,5 +1,7 @@
 import {photoElement, profileElement, nameInput, jobInput, buttonEdit, buttonAdd,
+
    configValidation, editAvatarElement, buttonAvatar} from '../utils/constants.js';
+
 
 import './index.css';
 import Card from '../components/Card.js';
@@ -10,6 +12,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithDelete from "../components/PopupWithDelete.js";
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api';
+
 
 
 
@@ -219,21 +222,6 @@ buttonAvatar.addEventListener('click', () => {
   popupEditProfile.open();
   validateFormProfile.resetValidation();
  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

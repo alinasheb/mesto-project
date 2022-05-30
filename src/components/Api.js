@@ -23,7 +23,6 @@ class Api {
   });
 }
 
-
 setUserInfo(item) {
   return fetch(`${this._url}/users/me`, {
     method: 'PATCH',

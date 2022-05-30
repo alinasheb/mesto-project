@@ -1,5 +1,6 @@
 export default class Card {
   constructor(data,  selector, userId, handleCardClick, {handleDeleteClick, handleLikeClick}) {
+
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -24,16 +25,15 @@ export default class Card {
 
   _getView() {
     if(this._ownerId ===  this._userId) {
+
       this._buttonDelete.classList.add('photo__delete_show');
     }
   }
-
-
-
   //готовая карточка
 generateCard() {
   this._element = this._getTemplate();
   const image = this._element.querySelector('.photo__image');
+
 
   this._buttonLike = this._element.querySelector('.photo__like');
   this._likeCount = this._element.querySelector('.photo__like-counter');
@@ -41,7 +41,6 @@ generateCard() {
 
 
   this._setEventListeners();
-
 
   image.src = this._link;
   image.alt = this._name;
@@ -54,6 +53,7 @@ generateCard() {
   if (this._likes.find((item) => this._userId === item._id)) {
     this._buttonLike.classList.add('photo__like_active');
   }
+
   return this._element;
 }
 
